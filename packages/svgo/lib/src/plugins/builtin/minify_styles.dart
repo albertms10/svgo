@@ -405,9 +405,9 @@ String _optimizeColors(String css) {
   };
 
   for (final entry in colorMap.entries) {
-    result = result.replaceAll(
+    result = result.replaceAllMapped(
       RegExp('(^|[^a-zA-Z])${entry.key}([^a-zA-Z]|\$)', caseSensitive: false),
-      '\$1${entry.value}\$2',
+      (match) => '${match.group(1)}${entry.value}${match.group(2)}',
     );
   }
 
